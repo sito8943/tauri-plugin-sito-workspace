@@ -1,8 +1,8 @@
 [package]
 name = "tauri-plugin-sito-workspace"
 version = "0.1.0"
-authors = [ "You" ]
-description = ""
+authors = ["Sito"]
+description = "Typed workspace filesystem primitives for Sito desktop applications"
 edition = "2021"
 rust-version = "1.77.2"
 exclude = ["/examples", "/dist-js", "/guest-js", "/node_modules"]
@@ -10,7 +10,7 @@ links = "tauri-plugin-sito-workspace"
 
 [dependencies]
 tauri = { version = "2.11.3" }
-serde = "1.0"
+serde = { version = "1.0", features = ["derive"] }
 thiserror = "2"
 
 [build-dependencies]

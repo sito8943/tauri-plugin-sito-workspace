@@ -1,13 +1,29 @@
-use tauri::{AppHandle, command, Runtime};
+use tauri::command;
 
 use crate::models::*;
 use crate::Result;
-use crate::SitoWorkspaceExt;
 
 #[command]
-pub(crate) async fn ping<R: Runtime>(
-    app: AppHandle<R>,
-    payload: PingRequest,
-) -> Result<PingResponse> {
-    app.sito_workspace().ping(payload)
+pub(crate) async fn list_directory(
+  payload: ListDirectoryRequest,
+) -> Result<Vec<WorkspaceEntry>> {
+  tauri::async_runtime::spawn_blocking(move || crate::workspace::list_directory(payload))
+    .await
+    .map_err(crate::Error::from_task)?
+}
+
+#[command]
+pub(crate) async fn stat_entry(payload: StatEntryRequest) -> Result<WorkspaceEntry> {
+  tauri::async_runtime::spawn_blocking(move || crate::workspace::stat_entry(payload))
+    .await
+    .map_err(crate::Error::from_task)?
+}
+
+#[command]
+pub(crate) async fn read_text_file(
+  payload: ReadTextFileRequest,
+) -> Result<TextDocumentSnapshot> {
+  tauri::async_runtime::spawn_blocking(move || crate::workspace::read_text_file(payload))
+    .await
+    .map_err(crate::Error::from_task)?
 }

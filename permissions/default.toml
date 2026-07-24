@@ -1,3 +1,7 @@
 [default]
-description = "Default permissions for the plugin"
-permissions = ["allow-ping"]
+description = "Allows read-only workspace listing, metadata and UTF-8 text access"
+permissions = [
+  "allow-list-directory",
+  "allow-read-text-file",
+  "allow-stat-entry",
+]

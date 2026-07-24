@@ -1,8 +1,9 @@
 {
-  "name": "tauri-plugin-sito-workspace-api",
+  "name": "@sito/plugin-workspace",
   "version": "0.1.0",
-  "author": "You",
-  "description": "",
+  "author": "Sito",
+  "description": "Typed guest bindings for the Sito workspace Tauri plugin",
+  "packageManager": "pnpm@10.34.4",
   "type": "module",
   "types": "./dist-js/index.d.ts",
   "main": "./dist-js/index.cjs",

@@ -19,5 +19,5 @@ tauri-build = { version = "2.6.3", default-features = false }
 
 [dependencies]
 tauri = { version = "2.11.3" }
+tauri-plugin-dialog = "2"
 tauri-plugin-sito-workspace = { path = "../../../" }
-

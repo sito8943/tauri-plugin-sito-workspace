@@ -1,8 +1,4 @@
-# Svelte + Vite
+# Sito workspace plugin example
 
-This template should help get you started developing with Tauri and Svelte in Vite.
-
-## Recommended IDE Setup
-
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer).
-
+Small Tauri + Svelte consumer used to exercise the plugin's read-only workspace
+contract: choose a directory and list its direct children.

@@ -1,9 +1,75 @@
-import { invoke } from '@tauri-apps/api/core'
+import { invoke } from "@tauri-apps/api/core";
 
-export async function ping(value: string): Promise<string | null> {
-  return await invoke<{value?: string}>('plugin:sito-workspace|ping', {
-    payload: {
-      value,
-    },
-  }).then((r) => (r.value ? r.value : null));
-}
+const COMMAND_PREFIX = "plugin:sito-workspace";
+
+export const WORKSPACE_ENTRY_KIND = {
+  DIRECTORY: "directory",
+  FILE: "file",
+  OTHER: "other",
+} as const;
+
+export type WorkspaceEntryKind =
+  (typeof WORKSPACE_ENTRY_KIND)[keyof typeof WORKSPACE_ENTRY_KIND];
+
+export const LINE_ENDING = {
+  CRLF: "cr_lf",
+  LF: "lf",
+  MIXED: "mixed",
+} as const;
+
+export type LineEnding = (typeof LINE_ENDING)[keyof typeof LINE_ENDING];
+
+export type WorkspaceEntry = {
+  path: string;
+  name: string;
+  kind: WorkspaceEntryKind;
+  isSymlink: boolean;
+  readonly: boolean;
+  size: number;
+  modifiedAt: number | null;
+};
+
+export type TextDocumentSnapshot = {
+  path: string;
+  content: string;
+  version: string;
+  encoding: "utf-8";
+  lineEnding: LineEnding;
+  readonly: boolean;
+  size: number;
+};
+
+export type WorkspaceErrorCode =
+  | "invalid_path"
+  | "io"
+  | "is_directory"
+  | "not_directory"
+  | "not_found"
+  | "permission_denied"
+  | "task_failed"
+  | "unsupported_encoding";
+
+export type WorkspaceError = {
+  code: WorkspaceErrorCode;
+  message: string;
+  path?: string;
+};
+
+export const listDirectory = async (
+  path: string,
+): Promise<WorkspaceEntry[]> =>
+  await invoke(`${COMMAND_PREFIX}|list_directory`, {
+    payload: { path },
+  });
+
+export const statEntry = async (path: string): Promise<WorkspaceEntry> =>
+  await invoke(`${COMMAND_PREFIX}|stat_entry`, {
+    payload: { path },
+  });
+
+export const readTextFile = async (
+  path: string,
+): Promise<TextDocumentSnapshot> =>
+  await invoke(`${COMMAND_PREFIX}|read_text_file`, {
+    payload: { path },
+  });

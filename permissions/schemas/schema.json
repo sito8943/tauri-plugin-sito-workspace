@@ -295,22 +295,46 @@
       "type": "string",
       "oneOf": [
         {
-          "description": "Enables the ping command without any pre-configured scope.",
+          "description": "Enables the list_directory command without any pre-configured scope.",
           "type": "string",
-          "const": "allow-ping",
-          "markdownDescription": "Enables the ping command without any pre-configured scope."
+          "const": "allow-list-directory",
+          "markdownDescription": "Enables the list_directory command without any pre-configured scope."
         },
         {
-          "description": "Denies the ping command without any pre-configured scope.",
+          "description": "Denies the list_directory command without any pre-configured scope.",
           "type": "string",
-          "const": "deny-ping",
-          "markdownDescription": "Denies the ping command without any pre-configured scope."
+          "const": "deny-list-directory",
+          "markdownDescription": "Denies the list_directory command without any pre-configured scope."
         },
         {
-          "description": "Default permissions for the plugin\n#### This default permission set includes:\n\n- `allow-ping`",
+          "description": "Enables the read_text_file command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-read-text-file",
+          "markdownDescription": "Enables the read_text_file command without any pre-configured scope."
+        },
+        {
+          "description": "Denies the read_text_file command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-read-text-file",
+          "markdownDescription": "Denies the read_text_file command without any pre-configured scope."
+        },
+        {
+          "description": "Enables the stat_entry command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-stat-entry",
+          "markdownDescription": "Enables the stat_entry command without any pre-configured scope."
+        },
+        {
+          "description": "Denies the stat_entry command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-stat-entry",
+          "markdownDescription": "Denies the stat_entry command without any pre-configured scope."
+        },
+        {
+          "description": "Allows read-only workspace listing, metadata and UTF-8 text access\n#### This default permission set includes:\n\n- `allow-list-directory`\n- `allow-read-text-file`\n- `allow-stat-entry`",
           "type": "string",
           "const": "default",
-          "markdownDescription": "Default permissions for the plugin\n#### This default permission set includes:\n\n- `allow-ping`"
+          "markdownDescription": "Allows read-only workspace listing, metadata and UTF-8 text access\n#### This default permission set includes:\n\n- `allow-list-directory`\n- `allow-read-text-file`\n- `allow-stat-entry`"
         }
       ]
     }
