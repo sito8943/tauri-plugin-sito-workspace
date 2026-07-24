@@ -8,7 +8,7 @@ mod error;
 mod models;
 mod workspace;
 
-pub use error::{Error, Result};
+pub use error::{Error, ErrorCode, Result};
 
 /// Initializes the plugin.
 pub fn init<R: Runtime>() -> TauriPlugin<R> {
@@ -17,6 +17,7 @@ pub fn init<R: Runtime>() -> TauriPlugin<R> {
       commands::list_directory,
       commands::read_text_file,
       commands::stat_entry,
+      commands::write_text_file,
     ])
     .build()
 }

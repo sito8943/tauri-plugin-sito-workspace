@@ -331,6 +331,18 @@
           "markdownDescription": "Denies the stat_entry command without any pre-configured scope."
         },
         {
+          "description": "Enables the write_text_file command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-write-text-file",
+          "markdownDescription": "Enables the write_text_file command without any pre-configured scope."
+        },
+        {
+          "description": "Denies the write_text_file command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-write-text-file",
+          "markdownDescription": "Denies the write_text_file command without any pre-configured scope."
+        },
+        {
           "description": "Allows read-only workspace listing, metadata and UTF-8 text access\n#### This default permission set includes:\n\n- `allow-list-directory`\n- `allow-read-text-file`\n- `allow-stat-entry`",
           "type": "string",
           "const": "default",

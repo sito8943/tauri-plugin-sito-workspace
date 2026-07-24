@@ -38,6 +38,14 @@ pub struct ReadTextFileRequest {
   pub path: String,
 }
 
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct WriteTextFileRequest {
+  pub path: String,
+  pub content: String,
+  pub expected_version: String,
+}
+
 #[derive(Debug, Clone, Copy, Deserialize, Eq, PartialEq, Serialize)]
 #[serde(rename_all = "snake_case")]
 pub enum LineEnding {

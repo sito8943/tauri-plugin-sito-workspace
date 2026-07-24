@@ -43,11 +43,15 @@ export type WorkspaceErrorCode =
   | "invalid_path"
   | "io"
   | "is_directory"
+  | "not_file"
   | "not_directory"
   | "not_found"
   | "permission_denied"
+  | "read_only"
+  | "symlink_not_writable"
   | "task_failed"
-  | "unsupported_encoding";
+  | "unsupported_encoding"
+  | "version_conflict";
 
 export type WorkspaceError = {
   code: WorkspaceErrorCode;
@@ -72,4 +76,13 @@ export const readTextFile = async (
 ): Promise<TextDocumentSnapshot> =>
   await invoke(`${COMMAND_PREFIX}|read_text_file`, {
     payload: { path },
+  });
+
+export const writeTextFile = async (
+  path: string,
+  content: string,
+  expectedVersion: string,
+): Promise<TextDocumentSnapshot> =>
+  await invoke(`${COMMAND_PREFIX}|write_text_file`, {
+    payload: { path, content, expectedVersion },
   });

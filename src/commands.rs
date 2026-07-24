@@ -27,3 +27,12 @@ pub(crate) async fn read_text_file(
     .await
     .map_err(crate::Error::from_task)?
 }
+
+#[command]
+pub(crate) async fn write_text_file(
+  payload: WriteTextFileRequest,
+) -> Result<TextDocumentSnapshot> {
+  tauri::async_runtime::spawn_blocking(move || crate::workspace::write_text_file(payload))
+    .await
+    .map_err(crate::Error::from_task)?
+}
