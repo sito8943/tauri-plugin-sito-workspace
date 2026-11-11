@@ -65,3 +65,21 @@ pub struct TextDocumentSnapshot {
   pub readonly: bool,
   pub size: u64,
 }
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ListWorkspaceFilesRequest {
+  pub root: String,
+  pub limit: Option<usize>,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct WorkspaceFileList {
+  /// The root exactly as requested; `files` are relative to it.
+  pub root: String,
+  /// Relative paths using `/` separators, sorted.
+  pub files: Vec<String>,
+  /// True when the listing stopped at the limit.
+  pub truncated: bool,
+}

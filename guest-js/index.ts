@@ -86,3 +86,24 @@ export const writeTextFile = async (
   await invoke(`${COMMAND_PREFIX}|write_text_file`, {
     payload: { path, content, expectedVersion },
   });
+
+export type WorkspaceFileList = {
+  /** The root exactly as requested; `files` are relative to it. */
+  root: string;
+  /** Relative paths using `/` separators, sorted. */
+  files: string[];
+  /** True when the listing stopped at `limit`. */
+  truncated: boolean;
+};
+
+/**
+ * Lists every file under `root` recursively, honoring `.gitignore`/`.ignore`.
+ * Hidden files are included; `.git` is not.
+ */
+export const listWorkspaceFiles = async (
+  root: string,
+  limit?: number,
+): Promise<WorkspaceFileList> =>
+  await invoke(`${COMMAND_PREFIX}|list_workspace_files`, {
+    payload: { root, limit: limit ?? null },
+  });

@@ -1,10 +1,11 @@
 ## Default Permission
 
-Allows read-only workspace listing, metadata and UTF-8 text access
+Allows read-only workspace listing, recursive file listing, metadata and UTF-8 text access
 
 #### This default permission set includes the following:
 
 - `allow-list-directory`
+- `allow-list-workspace-files`
 - `allow-read-text-file`
 - `allow-stat-entry`
 
@@ -39,6 +40,32 @@ Enables the list_directory command without any pre-configured scope.
 <td>
 
 Denies the list_directory command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`sito-workspace:allow-list-workspace-files`
+
+</td>
+<td>
+
+Enables the list_workspace_files command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`sito-workspace:deny-list-workspace-files`
+
+</td>
+<td>
+
+Denies the list_workspace_files command without any pre-configured scope.
 
 </td>
 </tr>

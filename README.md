@@ -12,6 +12,7 @@ This repository publishes two coordinated artifacts:
 The workspace contract supports:
 
 - list a directory;
+- list every file under a root recursively, honoring `.gitignore`/`.ignore` (for quick open);
 - stat one filesystem entry;
 - read a UTF-8 text document with version and line-ending metadata.
 - atomically replace an existing UTF-8 text document when its content version still matches.
