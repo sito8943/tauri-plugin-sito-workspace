@@ -11,6 +11,7 @@ links = "tauri-plugin-sito-workspace"
 [dependencies]
 blake3 = "1"
 ignore = "0.4"
+regex = "1"
 tauri = { version = "2.11.3" }
 serde = { version = "1.0", features = ["derive"] }
 tempfile = "3"

@@ -13,6 +13,7 @@ The workspace contract supports:
 
 - list a directory;
 - list every file under a root recursively, honoring `.gitignore`/`.ignore` (for quick open);
+- search the text of every file under a root (literal or regex, optional case sensitivity), one result per matching line with UTF-16 match ranges;
 - stat one filesystem entry;
 - read a UTF-8 text document with version and line-ending metadata.
 - atomically replace an existing UTF-8 text document when its content version still matches.

@@ -8,6 +8,7 @@ pub type Result<T> = std::result::Result<T, Error>;
 #[serde(rename_all = "snake_case")]
 pub enum ErrorCode {
   InvalidPath,
+  InvalidQuery,
   IsDirectory,
   NotFile,
   NotDirectory,
@@ -38,6 +39,14 @@ impl Error {
       code: ErrorCode::InvalidPath,
       message: "Workspace paths cannot be empty".to_string(),
       path: Some(path),
+    }
+  }
+
+  pub fn invalid_query(message: impl Into<String>) -> Self {
+    Self {
+      code: ErrorCode::InvalidQuery,
+      message: message.into(),
+      path: None,
     }
   }
 

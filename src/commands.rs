@@ -45,3 +45,10 @@ pub(crate) async fn list_workspace_files(
     .await
     .map_err(crate::Error::from_task)?
 }
+
+#[command]
+pub(crate) async fn search_text(payload: SearchTextRequest) -> Result<TextSearchResult> {
+  tauri::async_runtime::spawn_blocking(move || crate::search::search_text(payload))
+    .await
+    .map_err(crate::Error::from_task)?
+}

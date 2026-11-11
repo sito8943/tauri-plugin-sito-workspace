@@ -18,6 +18,7 @@ pub fn init<R: Runtime>() -> TauriPlugin<R> {
       commands::list_directory,
       commands::list_workspace_files,
       commands::read_text_file,
+      commands::search_text,
       commands::stat_entry,
       commands::write_text_file,
     ])

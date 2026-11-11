@@ -83,3 +83,40 @@ pub struct WorkspaceFileList {
   /// True when the listing stopped at the limit.
   pub truncated: bool,
 }
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct SearchTextRequest {
+  pub root: String,
+  pub query: String,
+  pub is_regex: Option<bool>,
+  pub case_sensitive: Option<bool>,
+  pub max_results: Option<usize>,
+}
+
+/// One matching line. Offsets are UTF-16 code units.
+#[derive(Debug, Clone, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct TextSearchMatch {
+  /// Relative to the searched root, `/`-separated.
+  pub path: String,
+  /// 1-based line number.
+  pub line: u32,
+  /// 0-based column of the first match in the full line.
+  pub column: u32,
+  /// The line, windowed around the first match and without leading indentation.
+  pub preview: String,
+  /// `[start, end)` ranges of every match inside `preview`.
+  pub ranges: Vec<[u32; 2]>,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct TextSearchResult {
+  pub root: String,
+  /// Sorted by path, then line.
+  pub matches: Vec<TextSearchMatch>,
+  /// True when the search stopped at `max_results`.
+  pub truncated: bool,
+  pub files_searched: u32,
+}
