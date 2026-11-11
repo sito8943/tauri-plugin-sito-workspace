@@ -1,6 +1,6 @@
 [package]
 name = "tauri-plugin-sito-workspace"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Sito"]
 description = "Typed workspace filesystem primitives for Sito desktop applications"
 edition = "2021"

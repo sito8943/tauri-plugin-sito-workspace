@@ -1,6 +1,6 @@
 {
   "name": "@sito/plugin-workspace",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Sito",
   "description": "Typed guest bindings for the Sito workspace Tauri plugin",
   "packageManager": "pnpm@10.34.4",
