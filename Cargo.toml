@@ -1,6 +1,6 @@
 [package]
 name = "tauri-plugin-sito-workspace"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Sito"]
 description = "Typed workspace filesystem primitives for Sito desktop applications"
 edition = "2021"
@@ -10,6 +10,8 @@ links = "tauri-plugin-sito-workspace"
 
 [dependencies]
 blake3 = "1"
+ignore = "0.4"
+regex = "1"
 tauri = { version = "2.11.3" }
 serde = { version = "1.0", features = ["derive"] }
 tempfile = "3"

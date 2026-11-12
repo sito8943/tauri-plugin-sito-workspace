@@ -9,7 +9,7 @@ use crate::models::{
 };
 use crate::{Error, Result};
 
-fn workspace_path(raw: String) -> Result<PathBuf> {
+pub(crate) fn workspace_path(raw: String) -> Result<PathBuf> {
   if raw.trim().is_empty() {
     return Err(Error::invalid_path(raw));
   }

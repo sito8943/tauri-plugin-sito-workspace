@@ -1,11 +1,13 @@
 ## Default Permission
 
-Allows read-only workspace listing, metadata and UTF-8 text access
+Allows read-only workspace listing, recursive file listing, text search, metadata and UTF-8 text access
 
 #### This default permission set includes the following:
 
 - `allow-list-directory`
+- `allow-list-workspace-files`
 - `allow-read-text-file`
+- `allow-search-text`
 - `allow-stat-entry`
 
 ## Permission Table
@@ -46,6 +48,32 @@ Denies the list_directory command without any pre-configured scope.
 <tr>
 <td>
 
+`sito-workspace:allow-list-workspace-files`
+
+</td>
+<td>
+
+Enables the list_workspace_files command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`sito-workspace:deny-list-workspace-files`
+
+</td>
+<td>
+
+Denies the list_workspace_files command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
 `sito-workspace:allow-read-text-file`
 
 </td>
@@ -65,6 +93,32 @@ Enables the read_text_file command without any pre-configured scope.
 <td>
 
 Denies the read_text_file command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`sito-workspace:allow-search-text`
+
+</td>
+<td>
+
+Enables the search_text command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`sito-workspace:deny-search-text`
+
+</td>
+<td>
+
+Denies the search_text command without any pre-configured scope.
 
 </td>
 </tr>

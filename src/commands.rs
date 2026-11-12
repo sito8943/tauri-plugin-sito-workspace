@@ -36,3 +36,19 @@ pub(crate) async fn write_text_file(
     .await
     .map_err(crate::Error::from_task)?
 }
+
+#[command]
+pub(crate) async fn list_workspace_files(
+  payload: ListWorkspaceFilesRequest,
+) -> Result<WorkspaceFileList> {
+  tauri::async_runtime::spawn_blocking(move || crate::search::list_workspace_files(payload))
+    .await
+    .map_err(crate::Error::from_task)?
+}
+
+#[command]
+pub(crate) async fn search_text(payload: SearchTextRequest) -> Result<TextSearchResult> {
+  tauri::async_runtime::spawn_blocking(move || crate::search::search_text(payload))
+    .await
+    .map_err(crate::Error::from_task)?
+}
