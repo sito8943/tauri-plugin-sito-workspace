@@ -120,3 +120,38 @@ pub struct TextSearchResult {
   pub truncated: bool,
   pub files_searched: u32,
 }
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct CreateEntryRequest {
+  pub path: String,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct RenameEntryRequest {
+  pub from: String,
+  pub to: String,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct TrashEntryRequest {
+  pub path: String,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct WatchWorkspaceRequest {
+  pub root: String,
+}
+
+/// Payload of `sito-workspace://changed`.
+#[derive(Debug, Clone, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct WorkspaceChangeEvent {
+  /// The watched root, as passed to `watch_workspace`.
+  pub root: String,
+  /// Absolute paths created, modified, removed or renamed (both names), sorted.
+  pub paths: Vec<String>,
+}

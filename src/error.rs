@@ -7,6 +7,7 @@ pub type Result<T> = std::result::Result<T, Error>;
 #[derive(Debug, Clone, Copy, Eq, PartialEq, Serialize)]
 #[serde(rename_all = "snake_case")]
 pub enum ErrorCode {
+  AlreadyExists,
   InvalidPath,
   InvalidQuery,
   IsDirectory,
@@ -18,6 +19,8 @@ pub enum ErrorCode {
   SymlinkNotWritable,
   UnsupportedEncoding,
   VersionConflict,
+  TrashFailed,
+  WatchFailed,
   Io,
   TaskFailed,
 }
@@ -39,6 +42,30 @@ impl Error {
       code: ErrorCode::InvalidPath,
       message: "Workspace paths cannot be empty".to_string(),
       path: Some(path),
+    }
+  }
+
+  pub fn already_exists(path: impl Into<String>) -> Self {
+    Self {
+      code: ErrorCode::AlreadyExists,
+      message: "An entry with that name already exists".to_string(),
+      path: Some(path.into()),
+    }
+  }
+
+  pub fn trash_failed(path: impl Into<String>, message: impl Into<String>) -> Self {
+    Self {
+      code: ErrorCode::TrashFailed,
+      message: message.into(),
+      path: Some(path.into()),
+    }
+  }
+
+  pub fn watch_failed(path: impl Into<String>, message: impl Into<String>) -> Self {
+    Self {
+      code: ErrorCode::WatchFailed,
+      message: message.into(),
+      path: Some(path.into()),
     }
   }
 
@@ -117,6 +144,7 @@ impl Error {
     let code = match error.kind() {
       ErrorKind::NotFound => ErrorCode::NotFound,
       ErrorKind::PermissionDenied => ErrorCode::PermissionDenied,
+      ErrorKind::AlreadyExists => ErrorCode::AlreadyExists,
       _ => ErrorCode::Io,
     };
     Self {

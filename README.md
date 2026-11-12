@@ -17,6 +17,8 @@ The workspace contract supports:
 - stat one filesystem entry;
 - read a UTF-8 text document with version and line-ending metadata.
 - atomically replace an existing UTF-8 text document when its content version still matches.
+- create a file or directory, rename/move an entry (never overwriting), move an entry to the trash;
+- watch a root recursively and receive batched `sito-workspace://changed` events.
 
 Filesystem work runs on Tauri's blocking pool. Errors cross the IPC boundary as structured
 `{ code, message, path? }` payloads instead of UI text.
@@ -25,5 +27,8 @@ Writing is excluded from the default permission set. Consumers must explicitly g
 `sito-workspace:allow-write-text-file`. Writes reject version conflicts, symbolic links,
 read-only files and non-regular files.
 
-File watching, workspace-root permission scopes, file creation/deletion and remote resources are
-not implemented yet.
+Creating, renaming and trashing are excluded from the default permission set; grant
+`sito-workspace:allow-create-file`, `allow-create-directory`, `allow-rename-entry` and
+`allow-trash-entry` explicitly. Nothing deletes permanently.
+
+Workspace-root permission scopes and remote resources are not implemented yet.

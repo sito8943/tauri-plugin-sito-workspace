@@ -52,3 +52,48 @@ pub(crate) async fn search_text(payload: SearchTextRequest) -> Result<TextSearch
     .await
     .map_err(crate::Error::from_task)?
 }
+
+#[command]
+pub(crate) async fn create_file(payload: CreateEntryRequest) -> Result<WorkspaceEntry> {
+  tauri::async_runtime::spawn_blocking(move || crate::operations::create_file(payload))
+    .await
+    .map_err(crate::Error::from_task)?
+}
+
+#[command]
+pub(crate) async fn create_directory(payload: CreateEntryRequest) -> Result<WorkspaceEntry> {
+  tauri::async_runtime::spawn_blocking(move || crate::operations::create_directory(payload))
+    .await
+    .map_err(crate::Error::from_task)?
+}
+
+#[command]
+pub(crate) async fn rename_entry(payload: RenameEntryRequest) -> Result<WorkspaceEntry> {
+  tauri::async_runtime::spawn_blocking(move || crate::operations::rename_entry(payload))
+    .await
+    .map_err(crate::Error::from_task)?
+}
+
+#[command]
+pub(crate) async fn trash_entry(payload: TrashEntryRequest) -> Result<()> {
+  tauri::async_runtime::spawn_blocking(move || crate::operations::trash_entry(payload))
+    .await
+    .map_err(crate::Error::from_task)?
+}
+
+#[command]
+pub(crate) async fn watch_workspace<R: tauri::Runtime>(
+  app: tauri::AppHandle<R>,
+  registry: tauri::State<'_, crate::watch::WatcherRegistry>,
+  payload: WatchWorkspaceRequest,
+) -> Result<()> {
+  crate::watch::watch_workspace(app, &registry, payload)
+}
+
+#[command]
+pub(crate) async fn unwatch_workspace(
+  registry: tauri::State<'_, crate::watch::WatcherRegistry>,
+  payload: WatchWorkspaceRequest,
+) -> Result<()> {
+  crate::watch::unwatch_workspace(&registry, payload)
+}

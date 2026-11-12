@@ -39,7 +39,7 @@ fn entry_kind(metadata: &fs::Metadata) -> WorkspaceEntryKind {
   }
 }
 
-fn entry_from_path(path: &Path) -> Result<WorkspaceEntry> {
+pub(crate) fn entry_from_path(path: &Path) -> Result<WorkspaceEntry> {
   let display_path = path.to_string_lossy().into_owned();
   let symlink_metadata =
     fs::symlink_metadata(path).map_err(|error| Error::from_io(&display_path, error))?;

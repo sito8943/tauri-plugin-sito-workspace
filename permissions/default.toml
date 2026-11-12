@@ -1,9 +1,11 @@
 [default]
-description = "Allows read-only workspace listing, recursive file listing, text search, metadata and UTF-8 text access"
+description = "Allows read-only workspace listing, recursive file listing, text search, change watching, metadata and UTF-8 text access"
 permissions = [
   "allow-list-directory",
   "allow-list-workspace-files",
   "allow-read-text-file",
   "allow-search-text",
   "allow-stat-entry",
+  "allow-unwatch-workspace",
+  "allow-watch-workspace",
 ]
