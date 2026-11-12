@@ -1,4 +1,5 @@
 import { invoke } from "@tauri-apps/api/core";
+import { listen, type UnlistenFn } from "@tauri-apps/api/event";
 
 const COMMAND_PREFIX = "plugin:sito-workspace";
 
@@ -40,6 +41,7 @@ export type TextDocumentSnapshot = {
 };
 
 export type WorkspaceErrorCode =
+  | "already_exists"
   | "invalid_path"
   | "invalid_query"
   | "io"
@@ -51,8 +53,10 @@ export type WorkspaceErrorCode =
   | "read_only"
   | "symlink_not_writable"
   | "task_failed"
+  | "trash_failed"
   | "unsupported_encoding"
-  | "version_conflict";
+  | "version_conflict"
+  | "watch_failed";
 
 export type WorkspaceError = {
   code: WorkspaceErrorCode;
@@ -158,3 +162,50 @@ export const searchText = async (
       maxResults: options.maxResults ?? null,
     },
   });
+
+/** Creates an empty file; never overwrites (`already_exists`). */
+export const createFile = async (path: string): Promise<WorkspaceEntry> =>
+  await invoke(`${COMMAND_PREFIX}|create_file`, { payload: { path } });
+
+/** Creates one directory (parent must exist); fails with `already_exists`. */
+export const createDirectory = async (path: string): Promise<WorkspaceEntry> =>
+  await invoke(`${COMMAND_PREFIX}|create_directory`, { payload: { path } });
+
+/** Renames or moves an entry; never overwrites (`already_exists`). */
+export const renameEntry = async (
+  from: string,
+  to: string,
+): Promise<WorkspaceEntry> =>
+  await invoke(`${COMMAND_PREFIX}|rename_entry`, { payload: { from, to } });
+
+/** Moves an entry to the system trash (recoverable). */
+export const trashEntry = async (path: string): Promise<void> =>
+  await invoke(`${COMMAND_PREFIX}|trash_entry`, { payload: { path } });
+
+export const WORKSPACE_CHANGED_EVENT = "sito-workspace://changed";
+
+export type WorkspaceChangeEvent = {
+  /** The watched root, as passed to `watchWorkspace`. */
+  root: string;
+  /** Absolute paths created, modified, removed or renamed, sorted. */
+  paths: string[];
+};
+
+/**
+ * Watches `root` recursively, replacing the previous watcher (one workspace per
+ * app; watching the same root again is a no-op). Batched changes arrive
+ * through `onWorkspaceChange`; `.git` internals are ignored.
+ */
+export const watchWorkspace = async (root: string): Promise<void> =>
+  await invoke(`${COMMAND_PREFIX}|watch_workspace`, { payload: { root } });
+
+/** Stops the watcher if it is watching `root`. */
+export const unwatchWorkspace = async (root: string): Promise<void> =>
+  await invoke(`${COMMAND_PREFIX}|unwatch_workspace`, { payload: { root } });
+
+export const onWorkspaceChange = async (
+  handler: (event: WorkspaceChangeEvent) => void,
+): Promise<UnlistenFn> =>
+  await listen<WorkspaceChangeEvent>(WORKSPACE_CHANGED_EVENT, (event) =>
+    handler(event.payload),
+  );

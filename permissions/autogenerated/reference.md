@@ -1,6 +1,6 @@
 ## Default Permission
 
-Allows read-only workspace listing, recursive file listing, text search, metadata and UTF-8 text access
+Allows read-only workspace listing, recursive file listing, text search, change watching, metadata and UTF-8 text access
 
 #### This default permission set includes the following:
 
@@ -9,6 +9,8 @@ Allows read-only workspace listing, recursive file listing, text search, metadat
 - `allow-read-text-file`
 - `allow-search-text`
 - `allow-stat-entry`
+- `allow-unwatch-workspace`
+- `allow-watch-workspace`
 
 ## Permission Table
 
@@ -18,6 +20,58 @@ Allows read-only workspace listing, recursive file listing, text search, metadat
 <th>Description</th>
 </tr>
 
+
+<tr>
+<td>
+
+`sito-workspace:allow-create-directory`
+
+</td>
+<td>
+
+Enables the create_directory command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`sito-workspace:deny-create-directory`
+
+</td>
+<td>
+
+Denies the create_directory command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`sito-workspace:allow-create-file`
+
+</td>
+<td>
+
+Enables the create_file command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`sito-workspace:deny-create-file`
+
+</td>
+<td>
+
+Denies the create_file command without any pre-configured scope.
+
+</td>
+</tr>
 
 <tr>
 <td>
@@ -100,6 +154,32 @@ Denies the read_text_file command without any pre-configured scope.
 <tr>
 <td>
 
+`sito-workspace:allow-rename-entry`
+
+</td>
+<td>
+
+Enables the rename_entry command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`sito-workspace:deny-rename-entry`
+
+</td>
+<td>
+
+Denies the rename_entry command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
 `sito-workspace:allow-search-text`
 
 </td>
@@ -145,6 +225,84 @@ Enables the stat_entry command without any pre-configured scope.
 <td>
 
 Denies the stat_entry command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`sito-workspace:allow-trash-entry`
+
+</td>
+<td>
+
+Enables the trash_entry command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`sito-workspace:deny-trash-entry`
+
+</td>
+<td>
+
+Denies the trash_entry command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`sito-workspace:allow-unwatch-workspace`
+
+</td>
+<td>
+
+Enables the unwatch_workspace command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`sito-workspace:deny-unwatch-workspace`
+
+</td>
+<td>
+
+Denies the unwatch_workspace command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`sito-workspace:allow-watch-workspace`
+
+</td>
+<td>
+
+Enables the watch_workspace command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`sito-workspace:deny-watch-workspace`
+
+</td>
+<td>
+
+Denies the watch_workspace command without any pre-configured scope.
 
 </td>
 </tr>

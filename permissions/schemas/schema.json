@@ -295,6 +295,30 @@
       "type": "string",
       "oneOf": [
         {
+          "description": "Enables the create_directory command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-create-directory",
+          "markdownDescription": "Enables the create_directory command without any pre-configured scope."
+        },
+        {
+          "description": "Denies the create_directory command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-create-directory",
+          "markdownDescription": "Denies the create_directory command without any pre-configured scope."
+        },
+        {
+          "description": "Enables the create_file command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-create-file",
+          "markdownDescription": "Enables the create_file command without any pre-configured scope."
+        },
+        {
+          "description": "Denies the create_file command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-create-file",
+          "markdownDescription": "Denies the create_file command without any pre-configured scope."
+        },
+        {
           "description": "Enables the list_directory command without any pre-configured scope.",
           "type": "string",
           "const": "allow-list-directory",
@@ -331,6 +355,18 @@
           "markdownDescription": "Denies the read_text_file command without any pre-configured scope."
         },
         {
+          "description": "Enables the rename_entry command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-rename-entry",
+          "markdownDescription": "Enables the rename_entry command without any pre-configured scope."
+        },
+        {
+          "description": "Denies the rename_entry command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-rename-entry",
+          "markdownDescription": "Denies the rename_entry command without any pre-configured scope."
+        },
+        {
           "description": "Enables the search_text command without any pre-configured scope.",
           "type": "string",
           "const": "allow-search-text",
@@ -355,6 +391,42 @@
           "markdownDescription": "Denies the stat_entry command without any pre-configured scope."
         },
         {
+          "description": "Enables the trash_entry command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-trash-entry",
+          "markdownDescription": "Enables the trash_entry command without any pre-configured scope."
+        },
+        {
+          "description": "Denies the trash_entry command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-trash-entry",
+          "markdownDescription": "Denies the trash_entry command without any pre-configured scope."
+        },
+        {
+          "description": "Enables the unwatch_workspace command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-unwatch-workspace",
+          "markdownDescription": "Enables the unwatch_workspace command without any pre-configured scope."
+        },
+        {
+          "description": "Denies the unwatch_workspace command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-unwatch-workspace",
+          "markdownDescription": "Denies the unwatch_workspace command without any pre-configured scope."
+        },
+        {
+          "description": "Enables the watch_workspace command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-watch-workspace",
+          "markdownDescription": "Enables the watch_workspace command without any pre-configured scope."
+        },
+        {
+          "description": "Denies the watch_workspace command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-watch-workspace",
+          "markdownDescription": "Denies the watch_workspace command without any pre-configured scope."
+        },
+        {
           "description": "Enables the write_text_file command without any pre-configured scope.",
           "type": "string",
           "const": "allow-write-text-file",
@@ -367,10 +439,10 @@
           "markdownDescription": "Denies the write_text_file command without any pre-configured scope."
         },
         {
-          "description": "Allows read-only workspace listing, recursive file listing, text search, metadata and UTF-8 text access\n#### This default permission set includes:\n\n- `allow-list-directory`\n- `allow-list-workspace-files`\n- `allow-read-text-file`\n- `allow-search-text`\n- `allow-stat-entry`",
+          "description": "Allows read-only workspace listing, recursive file listing, text search, change watching, metadata and UTF-8 text access\n#### This default permission set includes:\n\n- `allow-list-directory`\n- `allow-list-workspace-files`\n- `allow-read-text-file`\n- `allow-search-text`\n- `allow-stat-entry`\n- `allow-unwatch-workspace`\n- `allow-watch-workspace`",
           "type": "string",
           "const": "default",
-          "markdownDescription": "Allows read-only workspace listing, recursive file listing, text search, metadata and UTF-8 text access\n#### This default permission set includes:\n\n- `allow-list-directory`\n- `allow-list-workspace-files`\n- `allow-read-text-file`\n- `allow-search-text`\n- `allow-stat-entry`"
+          "markdownDescription": "Allows read-only workspace listing, recursive file listing, text search, change watching, metadata and UTF-8 text access\n#### This default permission set includes:\n\n- `allow-list-directory`\n- `allow-list-workspace-files`\n- `allow-read-text-file`\n- `allow-search-text`\n- `allow-stat-entry`\n- `allow-unwatch-workspace`\n- `allow-watch-workspace`"
         }
       ]
     }
